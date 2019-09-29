@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Nyholm\Psr7\Factory\Psr17Factory;
 
 final class TokenSubscriber implements EventSubscriberInterface
 {
@@ -61,7 +62,8 @@ final class TokenSubscriber implements EventSubscriberInterface
 
         if ($controller[0] instanceof TokenAuthenticatedController) {
             $request = $event->getRequest();
-            $psrRequest = (new PsrHttpFactory)->createRequest($request);
+            $psr17Factory = new Psr17Factory();
+            $psrRequest = (new PsrHttpFactory($psr17Factory,$psr17Factory,$psr17Factory,$psr17Factory))->createRequest($request);
             try {
                 $psrRequest = $this->resourceServer->validateAuthenticatedRequest($psrRequest);
             } catch (OAuthServerException $exception) {

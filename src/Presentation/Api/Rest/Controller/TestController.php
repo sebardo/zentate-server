@@ -14,9 +14,11 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * Class TestController
  * @package App\Presentation\Api\Rest\Controller
  */
-final class TestController extends AbstractController//implements TokenAuthenticatedController
+final class TestController implements TokenAuthenticatedController
 {
     /**
+     * For test porpouse use this curl call to get user logged: curl http://oauth.test/api/test -H 'Authorization: Bearer ACCESS_TOKEN'
+     *
      * @Route("test", name="api_test", methods={"GET"})
      * @param Request $request
      * @return Response
