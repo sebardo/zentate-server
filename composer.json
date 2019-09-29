@@ -8,9 +8,12 @@
         "beberlei/assert": "^3.0",
         "league/oauth2-server": "^7.2",
         "ramsey/uuid": "^3.8",
+        "symfony/apache-pack": "^1.0",
         "symfony/console": "*",
+        "symfony/expression-language": "4.1.*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "*",
+        "symfony/monolog-bundle": "^3.4",
         "symfony/orm-pack": "^1.0",
         "symfony/psr-http-message-bridge": "^1.1",
         "symfony/security-bundle": "*",
@@ -18,7 +21,8 @@
         "zendframework/zend-diactoros": "^2.0"
     },
     "require-dev": {
-        "symfony/dotenv": "*"
+        "symfony/dotenv": "*",
+        "symfony/web-server-bundle": "4.1.*"
     },
     "config": {
         "preferred-install": {

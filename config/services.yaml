@@ -46,3 +46,9 @@ services:
         arguments:
             $accessTokenRepository: '@App\Infrastructure\oAuth2Server\Bridge\AccessTokenRepository'
             $publicKey: '%env(OAUTH2_PUBLIC_KEY)%'
+
+    Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory: ~
+
+    Psr\Http\Message\ServerRequestInterface:
+        factory: 'Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory:createRequest'
+        arguments: ['@=service("request_stack").getMasterRequest()']

@@ -83,6 +83,9 @@
     "league/oauth2-server": {
         "version": "7.2.0"
     },
+    "monolog/monolog": {
+        "version": "1.25.1"
+    },
     "ocramius/package-versions": {
         "version": "1.3.0"
     },
@@ -109,6 +112,18 @@
     },
     "ramsey/uuid": {
         "version": "3.8.0"
+    },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "c82bead70f9a4f656354a193df7bf0ca2114efa0"
+        },
+        "files": [
+            "public/.htaccess"
+        ]
     },
     "symfony/cache": {
         "version": "v4.1.6"
@@ -139,6 +154,9 @@
     },
     "symfony/event-dispatcher": {
         "version": "v4.1.6"
+    },
+    "symfony/expression-language": {
+        "version": "v4.1.12"
     },
     "symfony/filesystem": {
         "version": "v4.1.6"
@@ -172,6 +190,23 @@
     },
     "symfony/inflector": {
         "version": "v4.1.6"
+    },
+    "symfony/monolog-bridge": {
+        "version": "v4.1.12"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "6240c6d43e8237a32452f057f81816820fd56ab6"
+        },
+        "files": [
+            "config/packages/dev/monolog.yaml",
+            "config/packages/prod/monolog.yaml",
+            "config/packages/test/monolog.yaml"
+        ]
     },
     "symfony/orm-pack": {
         "version": "v1.0.5"

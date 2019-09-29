@@ -43,7 +43,7 @@ class User implements UserInterface
      * @param string $email
      * @param string $name
      */
-    private function __construct(UserId $userId, string $email, string $name)
+    public function __construct(UserId $userId, string $email, string $name)
     {
         $this->id = $userId->toString();
         $this->email = $email;

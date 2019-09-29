@@ -36,7 +36,7 @@ class Client
      * @param ClientId $clientId
      * @param string $name
      */
-    private function __construct(ClientId $clientId, string $name)
+    public function __construct(ClientId $clientId, string $name)
     {
         $this->id = $clientId->toString();
         $this->name = $name;
