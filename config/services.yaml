@@ -42,7 +42,7 @@ services:
             $userRepository: '@App\Infrastructure\oAuth2Server\Bridge\UserRepository'
             $refreshTokenRepository: '@App\Infrastructure\oAuth2Server\Bridge\RefreshTokenRepository'
 
-    League\OAuth2\Server\Grant\ClientCredentials: ~
+    League\OAuth2\Server\Grant\ClientCredentialsGrant: ~
 
     League\OAuth2\Server\ResourceServer:
         arguments:

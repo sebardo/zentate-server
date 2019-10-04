@@ -30,6 +30,19 @@ final class TestController implements TokenAuthenticatedController
     }
 
     /**
+     * For test porpouse use this curl call to get user logged: curl http://oauth.test/api/test_client_credentials -H 'Authorization: Bearer ACCESS_TOKEN'
+     *
+     * @Route("test_client_credentials", name="api_test_client_credentials", methods={"GET"})
+     * @param Request $request
+     * @return Response
+     */
+    public function getTestClientCredentials(Request $request): Response
+    {
+        $id = $request->get('oauth_client_id');
+        return new JsonResponse($id, Response::HTTP_OK);
+    }
+
+    /**
      * @Route("user-create", name="api_user_create", methods={"GET"})
      * @param Request $request
      * @return Response

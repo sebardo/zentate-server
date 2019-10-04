@@ -37,16 +37,17 @@ final class AuthController
      */
     public function __construct(
         AuthorizationServer $authorizationServer,
-        PasswordGrant $passwordGrant
-//        ClientCredentialsGrant $clientCredentialsGrant
+        PasswordGrant $passwordGrant,
+        ClientCredentialsGrant $clientCredentialsGrant
     ) {
         $this->authorizationServer = $authorizationServer;
         $this->passwordGrant = $passwordGrant;
-//        $this->clientCredentialsGrant = $clientCredentialsGrant;
+        $this->clientCredentialsGrant = $clientCredentialsGrant;
     }
 
     /**
-     * Curl call to test this controller: curl -d "grant_type=password&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&client_secret=test&scope=*&username=user@email.com&password=user" -X POST http://oauth.test/api/accessToken
+     * Curl call to test this controller:
+     * curl -d "grant_type=password&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&client_secret=test&scope=*&username=user@email.com&password=user" -X POST http://oauth.test/api/accessToken
      *
      * @Route("accessToken", name="api_get_access_token", methods={"POST"})
      * @param ServerRequestInterface $request
@@ -76,23 +77,22 @@ final class AuthController
     }
 
     /**
-     * @Route("accessTokenClientCredencials", name="api_get_access_token_client_credentials", methods={"POST"})
+     * Machine to machine : grant "client_credentials"
+     * curl -d "grant_type=client_credentials&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&client_secret=test&scope=*" -X POST http://oauth.test/api/accessTokenClientCredentials
+     *
+     * @Route("accessTokenClientCredentials", name="api_get_access_token_client_credentials", methods={"POST"})
      * @param ServerRequestInterface $request
      * @return null|Psr7Response
      * @throws \Exception
      */
     public function getAccessTokenClientCredentials(ServerRequestInterface $request): ?Response
     {
-
-        $this->clientCredentialsGrant->setRefreshTokenTTL(new \DateInterval('P1M'));
-
         $psrResponse =  $this->withErrorHandling(function () use ($request) {
-            $this->clientCredentialsGrant->setRefreshTokenTTL(new \DateInterval('P1M'));
+
             $this->authorizationServer->enableGrantType(
                 $this->clientCredentialsGrant,
                 new \DateInterval('PT1H')
             );
-
 
             return $this->authorizationServer->respondToAccessTokenRequest($request, new Psr7Response());
         });

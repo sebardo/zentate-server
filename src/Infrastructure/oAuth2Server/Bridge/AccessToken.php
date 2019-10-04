@@ -15,7 +15,7 @@ final class AccessToken implements AccessTokenEntityInterface
      * @param string $userIdentifier
      * @param array $scopes
      */
-    public function __construct(string $userIdentifier, array $scopes = [])
+    public function __construct(string $userIdentifier=null, array $scopes = [])
     {
         $this->setUserIdentifier($userIdentifier);
         foreach ($scopes as $scope) {

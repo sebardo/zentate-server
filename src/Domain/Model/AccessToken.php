@@ -57,7 +57,7 @@ class AccessToken
      */
     public function __construct(
         string $id,
-        string $userId,
+        string $userId=null,
         string $clientId,
         array $scopes,
         bool $revoked,
