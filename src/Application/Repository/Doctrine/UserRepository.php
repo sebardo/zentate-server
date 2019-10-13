@@ -32,7 +32,7 @@ final class UserRepository implements UserRepositoryInterface
         $this->objectRepository = $this->entityManager->getRepository(self::ENTITY);
     }
 
-    public function find(UuidInterface $id): ?User
+    public function find(UuidInterface $id, $lockMode = NULL, $lockVersion = NULL): ?User
     {
         $this->entityManager->find(self::ENTITY, $id->toString());
     }

@@ -44,6 +44,16 @@ services:
 
     League\OAuth2\Server\Grant\ClientCredentialsGrant: ~
 
+    common_manager:
+        public: true
+        class: "App\\Service\\CommonManager"
+
+    League\OAuth2\Server\Grant\AuthCodeGrant:
+        arguments:
+            $authCodeRepository:  '@App\Infrastructure\oAuth2Server\Bridge\AuthCodeRepository'
+            $refreshTokenRepository: '@App\Infrastructure\oAuth2Server\Bridge\RefreshTokenRepository'
+            $authCodeTTL: "@=service('common_manager').dateInterval()"
+
     League\OAuth2\Server\ResourceServer:
         arguments:
             $accessTokenRepository: '@App\Infrastructure\oAuth2Server\Bridge\AccessTokenRepository'
@@ -54,3 +64,15 @@ services:
     Psr\Http\Message\ServerRequestInterface:
         factory: 'Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory:createRequest'
         arguments: ['@=service("request_stack").getMasterRequest()']
+
+#    # Register services
+#    Zend\Diactoros\ServerRequestFactory: ~
+#    Zend\Diactoros\StreamFactory: ~
+#    Zend\Diactoros\UploadedFileFactory: ~
+#    Zend\Diactoros\ResponseFactory: ~
+#
+#    # Setup autowiring aliases
+#    Psr\Http\Message\ServerRequestFactoryInterface: '@Zend\Diactoros\ServerRequestFactory'
+#    Psr\Http\Message\StreamFactoryInterface: '@Zend\Diactoros\StreamFactory'
+#    Psr\Http\Message\UploadedFileFactoryInterface: '@Zend\Diactoros\UploadedFileFactory'
+#    Psr\Http\Message\ResponseFactoryInterface: '@Zend\Diactoros\ResponseFactory'

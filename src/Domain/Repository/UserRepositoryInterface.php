@@ -6,7 +6,7 @@ use Ramsey\Uuid\UuidInterface;
 
 interface UserRepositoryInterface
 {
-    public function find(UuidInterface $id): ?User;
+    public function find(UuidInterface $id, $lockMode = NULL, $lockVersion = NULL): ?User;
 
     public function findOneByEmail(string $username): ?User;
 
