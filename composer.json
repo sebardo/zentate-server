@@ -18,11 +18,13 @@
         "symfony/orm-pack": "^1.0",
         "symfony/psr-http-message-bridge": "^1.1",
         "symfony/security-bundle": "*",
+        "symfony/twig-bundle": "4.1.*",
         "symfony/yaml": "*",
         "zendframework/zend-diactoros": "^2.0"
     },
     "require-dev": {
         "symfony/dotenv": "*",
+        "symfony/maker-bundle": "^1.14",
         "symfony/web-server-bundle": "4.1.*"
     },
     "config": {

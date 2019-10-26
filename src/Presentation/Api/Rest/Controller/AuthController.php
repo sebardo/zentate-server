@@ -61,7 +61,7 @@ final class AuthController
 
     /**
      * Curl call to test this controller:
-     * curl -d "grant_type=password&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&client_secret=test&scope=*&username=user@email.com&password=user" -X POST http://oauth.test/api/accessToken
+     * curl -d "grant_type=password&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&client_secret=test&scope=*&username=user@email.com&password=user" -X POST http://zentate-server.test/api/accessToken
      *
      * @Route("accessToken", name="api_get_access_token", methods={"POST"})
      * @param ServerRequestInterface $request
@@ -92,7 +92,7 @@ final class AuthController
 
     /**
      * Machine to machine : grant "client_credentials"
-     * curl -d "grant_type=client_credentials&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&client_secret=test&scope=*" -X POST http://oauth.test/api/accessTokenClientCredentials
+     * curl -d "grant_type=client_credentials&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&client_secret=test&scope=*" -X POST http://zentate-server.test/api/accessTokenClientCredentials
      *
      * @Route("accessTokenClientCredentials", name="api_get_access_token_client_credentials", methods={"POST"})
      * @param ServerRequestInterface $request
@@ -119,8 +119,8 @@ final class AuthController
 
     /**
      * Login in thirty party as google or face : grant "authorization code grant"
-     * curl http://oauth.test/api/authorize?response_type=code&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&redirect_uri=http://zentate.test/me&scope=*
-     * http://oauth.test/api/authorize?response_type=code&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&redirect_uri=http://zentate.test/me&scope=*
+     * curl http://zentate-server.test/api/authorize?response_type=code&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&redirect_uri=http://zentate.test/me&scope=*
+     * http://zentate-server.test/api/authorize?response_type=code&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&redirect_uri=http://zentate.test/me&scope=*
      * @Route("authorize", name="api_authorize", methods={"GET"})
      * @param ServerRequestInterface $request
      * @return null|Psr7Response
@@ -168,7 +168,7 @@ final class AuthController
     /**
      *grant "auth code"
      *
-     * curl -d "grant_type=authorization_code&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&client_secret=test&redirect_uri=http://zentate.test/me&code=CODE" -X POST http://oauth.test/api/accessTokenAuthCode
+     * curl -d "grant_type=authorization_code&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&client_secret=test&redirect_uri=http://zentate.test/me&code=CODE" -X POST http://zentate-server.test/api/accessTokenAuthCode
      *
      * @Route("accessTokenAuthCode", name="api_get_access_token_auth_code", methods={"POST"})
      * @param ServerRequestInterface $request
