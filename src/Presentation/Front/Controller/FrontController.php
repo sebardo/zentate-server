@@ -32,4 +32,28 @@ class FrontController extends AbstractController
         return $this->render('home/index.html.twig');
     }
 
+    /**
+     * @Route("/oauth2", name="app_oauth2")
+     */
+    public function oauth2(): Response
+    {
+        return $this->render('home/oauth2.html.twig');
+    }
+
+    /**
+     * @Route("/docs", name="app_docs")
+     */
+    public function docs(): Response
+    {
+        return $this->render('home/docs.html.twig');
+    }
+
+    /**
+     * @Route("/examples", name="app_examples")
+     */
+    public function examples(): Response
+    {
+        return $this->render('home/examples.html.twig');
+    }
+
 }
