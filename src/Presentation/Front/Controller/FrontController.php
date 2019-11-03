@@ -29,7 +29,7 @@ class FrontController extends AbstractController
      */
     public function indexme(): Response
     {
-        return $this->render('home/index.html.twig');
+        return $this->render('home/me.html.twig');
     }
 
     /**

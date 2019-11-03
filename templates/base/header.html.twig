@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
 
-    <img src="{{ asset('frog-head-white.svg') }}" width="90px">
+    <img src="{{ asset('frog-head-white.svg') }}" style="max-width:90px">
 
     <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Bootstrap"><img src="{{ asset('logo1.svg') }}"  width="115px"> </a>
 
@@ -10,7 +10,7 @@
                 <a class="nav-link {{ (app.request.get('_route') == 'app_index') ? 'active' }}" href="/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Bootstrap');">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ (app.request.get('_route') == 'app_oauth2') ? 'active' }}" href="/oauth2">Oauth2 Server</a>
+                <a class="nav-link {{ (app.request.get('_route') == 'app_oauth2') ? 'active' }}" href="/oauth2">OAuth 2.0 Server</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ (app.request.get('_route') == 'app_docs') ? 'active' }}" href="/docs" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">Docs API REST</a>
@@ -25,18 +25,17 @@
     </div>
 
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-        <li class="nav-item dropdown">
-            <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                v1.0
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
-                <a class="dropdown-item active" href="/docs/1.0/">Latest (1.0.x)</a>
-                <a class="dropdown-item" href="#">v0.9</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/docs/versions/">All versions</a>
-            </div>
-        </li>
-
+{#        <li class="nav-item dropdown">#}
+{#            <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#                v1.0#}
+{#            </a>#}
+{#            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">#}
+{#                <a class="dropdown-item active" href="/docs/1.0/">Latest (1.0.x)</a>#}
+{#                <a class="dropdown-item" href="#">v0.9</a>#}
+{#                <div class="dropdown-divider"></div>#}
+{#                <a class="dropdown-item" href="/docs/versions/">All versions</a>#}
+{#            </div>#}
+{#        </li>#}
     </ul>
 
 

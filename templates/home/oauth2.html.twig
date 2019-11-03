@@ -1,22 +1,53 @@
 {% extends '@base/layout.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}OAuth 2.0{% endblock %}
 
 {% block content %}
 
-     <div class="container" style="padding-top: 60px">
-         <div class="row align-items-center">
-             <div class="col-12 col-md-12">
-                <h1 style="font-weight: 900;">Oauth2 server</h1>
-                 <p>
-                     OAuth 2.0 es un estándar para implementar autorizaciones con acceso limitado a través de HTTP. Podemos usar esta autenticación adicional para nuestras API REST o podemos permitir que terceros usen su servidor OAuth 2.0 para autenticar a los usuarios en su sistema.
-                 </p>
-                 <h3>Roles</h3>
-                 <h3>Grants</h3>
-                 <h3>Test</h3>
+    <div class="container" style="padding-top: 60px">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-12">
+                <h1 style="font-weight: 900;margin-bottom: 30px">OAuth 2.0 server</h1>
+                <hr style="">
+                <p>
+                    Ofrecemos el servicio de autorización mediante una impementación estándar <b>OAuth 2.0</b> para otorgar acceso limitado a recursos a través del protocolo HTTP.
+                    Dicho servidor es usado por nuestra API REST pero también ofrecemos la posibilidad de que terceros usen el servicio <b>OAuth 2.0</b> para autenticar a los usuarios en su sistema.
+                </p>
+
+                <h3 style="font-weight: 900;margin-top: 60px">Token de acceso y JWT</h3>
+                <p>
+                    Utilziamos este tipo de tokens JWT que significa JSON Web Tokens para acceder a recursos protegidos.</br>
+                    Este token es la clave para los recursos de un propietario del recurso (Resource Owner) y un cliente (Client).</br>
+                    Este JWT es un método y estándar abierto e industrial para usar tokens de forma segura entre 2 partes. En nuestro caso El cliente y el servidor de autorización.</br>
+                    Este estándar nos permite tener secreto entre el servidor de autorización y el cliente encriptando y firmando los tokens.</br>
+                    Luego firmamos este token con una combinación de clave privada / pública y verificar que estamos autorizando contra el servidor de correcto.
+                </p>
+                <p></p>
+                <hr style="margin-bottom: 30px">
+
+                <h3 style="font-weight: 900;">Concesión ("Grants")</h3>
+                <h5 style="font-weight: 900;">Concesión de credenciales de cliente ("Client credentials grant")</h5>
+                <p>
+                    Esta concesión es adecuada para la autenticación de máquina a máquina, por ejemplo, para su uso en un trabajo cron que realiza tareas de mantenimiento a través de una API.
+                    Otro ejemplo sería un cliente que realiza solicitudes a una API que no requiere el permiso del usuario.
+                </p>
+
+                <h5 style="font-weight: 900;">Concesión de contraseña ("Password grant")</h5>
+                <p>Esta concesión es una gran experiencia de usuario para clientes de confianza, tanto en la web como en aplicaciones nativas.</p>
+
+                <h5 style="font-weight: 900;">Concesión de código de autorización ("Authorization Code grant")</h5>
+                <p>La concesión del código de autorización debería ser muy familiar si alguna vez ha iniciado sesión en una aplicación web con su cuenta de Facebook o Google.</p>
              </div>
      </div>
 
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-xs-12"  text-center >
+                <a href="/register" class="btn btn-lg btn-outline-secondary w-100 mb-3" >Crear una cuenta</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
  </div>
 
 {% endblock %}

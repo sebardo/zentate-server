@@ -1,17 +1,241 @@
 {% extends '@base/layout.html.twig' %}
 
-{% block title %}Examples{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/docs.css" crossorigin="anonymous">
+{% endblock %}
+
+{% block title %}Docs{% endblock %}
 
 {% block content %}
 
-     <div class="container" style="padding-top: 60px">
-         <div class="row align-items-center">
-             <div class="col-12 col-md-12">
-                <h1 style="font-weight: 900;">Docs</h1>
+<div class="container" style="padding-top: 60px">
+    <div class="row align-items-center">
+        <div class="col-12 col-md-12">
+            <h1>Docs <span class="text-muted mb-0">Currently v1.0</span></h1>
+            <hr>
+            <h3>Authentication & authorization using Ouath 2.0 by grants</h3>
+            <div id="accordion">
+                <div class="card password-grant">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h5 style="font-weight: 900;color: white;text-decoration: none">Password grant flow</h5>
+                            </button>
+                        </h5>
+                    </div>
 
-             </div>
-     </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>The client will ask the user for their authorization credentials (ususally a username and password).
+                                The client then sends a POST request with following body parameters to the authorization server:
+                            <ul class="list-param">
+                                <li><code>grant_type</code> with the value <code>password</code> <input type="text" class="form-control input-api grant_type" value="password"></li>
+                                <li><code>client_id</code> with the the client’s ID. <input type="text" class="form-control input-api client_id" value="c57c89af-7fb3-4338-98de-3028c6fda687"></li>
+                                <li><code>client_secret</code> with the client’s secret. <input type="text" class="form-control input-api client_secret" value="test"></li>
+                                <li><code>scope</code> with a space-delimited list of requested scope permissions. <input type="text" class="form-control input-api scope" value="*"></li>
+                                <li><code>username</code> with the user’s username. <input  type="text" class="form-control input-api username" value="user@email.com"></li>
+                                <li><code>password</code> with the user’s password. <input type="text" class="form-control input-api password" value="user"></li>
+                            </ul>
 
- </div>
+                            <button type="button" class="btn btn-outline-warning btn-sm" style="float: right;min-width: 227px;" id="try-password-grant">Try it!</button>
+                            <br><br>
+
+                            The authorization server will respond with a JSON object containing the following properties:
+
+                            <ul>
+                                <li><code>token_type</code> with the value Bearer</li>
+                                <li><code>expires_in</code> with an integer representing the TTL of the access token</li>
+                                <li><code>access_token</code> a JWT signed with the authorization server’s private key</li>
+                                <li><code>refresh_token</code> an encrypted payload that can be used to refresh the access token when it expires.</li>
+                            </ul>
+                            <div class="answer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card client-credentials-grant">
+                    <div class="card-header" id="headingTwo" style="background-color: #2b6a40">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <h5 style="font-weight: 900;">Client credentials grant flow</h5>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            The client sends a POST request with following body parameters to the authorization server:
+                            <ul class="list-param">
+                                <li><code>grant_type</code> with the value <code>client_credentials</code> <input type="text" class="form-control input-api grant_type" value="client_credentials"></li>
+                                <li><code>client_id</code> with the client’s ID <input type="text" class="form-control input-api client_id" value="c57c89af-7fb3-4338-98de-3028c6fda687"></li>
+                                <li><code>client_secret</code> with the client’s secret <input type="text" class="form-control input-api client_secret" value="test"></li>
+                                <li><code>scope</code> with a space-delimited list of requested scope permissions. <input type="text" class="form-control input-api scope" value="*"></li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-warning btn-sm" style="float: right;min-width: 227px;" id="try-client-credentials-grant">Try it!</button>
+                            <br><br>
+
+                            The authorization server will respond with a JSON object containing the following properties:
+                            <ul>
+                                <li><code>token_type</code> with the value Bearer</li>
+                                <li><code>expires_in</code> with an integer representing the TTL of the access token</li>
+                                <li><code>access_token</code> a JWT signed with the authorization server’s private key</li>
+                            </ul>
+                            <div class="answer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree" style="background-color: #2b6a40">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <h5 style="font-weight: 900;">Authorization code grant flow</h5>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="authorization-code-grant">
+                                <b>Part One</b><br>
+                                The client will redirect the user to the authorization server with the following parameters in the query string:
+                                <div class="row ">
+                                    <div class="col-md-8 col-xs-12">
+                                        <ul class="list-param">
+                                            <li><code>response_type</code> with the value <code>code</code> </li>
+                                            <li><code>client_id</code> with the client identifier </li>
+                                            <li><code>redirect_uri</code> with the client redirect URI. This parameter is optional, but if not send the user will be redirected to a pre-registered redirect URI.</li>
+                                            <li><code>scope</code> a space delimited list of scopes</li>
+                                            <li><code>state</code> with a CSRF token. This parameter is optional but highly recommended. You should store the value of the CSRF token in the user’s session to be validated when they return.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4 col-xs-12">
+                                        <div class="list-param"><input type="text" class="form-control input-api response_type" value="code"></div>
+                                        <div class="list-param"><input type="text" class="form-control input-api client_id " value="c57c89af-7fb3-4338-98de-3028c6fda687"></div>
+                                        <div class="list-param"><input type="text" class="form-control input-api redirect_uri list-param" value="http://zentate-server.test/me"></div>
+                                        <div class="list-param"><input type="text" class="form-control input-api scope" value="*" placeholder="scope"></div>
+                                        <div class="list-param"><input type="text" class="form-control input-api state list-param" value="" placeholder="state"></div>
+                                        <div class="list-param"><button type="button" class="btn btn-outline-warning btn-sm" style="float: right;min-width: 227px;" id="try-auth-code-grant">Try it!</button></div>
+                                        <br><br>
+                                    </div>
+                                </div>
+
+
+                                All of these parameters will be validated by the authorization server.
+                                The user will then be asked to login to the authorization server and approve the client.
+
+                                <br><br>
+                                If the user approves the client they will be redirected from the authorization server to the client’s redirect URI with the following parameters in the query string:
+                                <ul class="list-param">
+                                    <li><code>code</code> with the authorization code</li>
+                                    <li><code>state</code> with the state parameter sent in the original request. You should compare this value with the value stored in the user’s session to ensure the authorization code obtained is in response to requests made by this client rather than another client application.</li>
+                                </ul>
+
+                                <div class="answer"></div>
+                            </div>
+                            <div class="authorization-code-grant2">
+                                <b>Part Two</b><br>
+                                The client will now send a POST request to the authorization server with the following parameters:
+
+                                <ul class="list-param">
+                                    <li><code>grant_type</code> with the value of <code>authorization_code</code> <input required="required" type="text" class="form-control input-api grant_type" value="authorization_code"> </li>
+                                    <li><code>client_id</code> with the client identifier <input required="required" type="text" class="form-control input-api client_id" value="c57c89af-7fb3-4338-98de-3028c6fda687"></li>
+                                    <li><code>client_secret</code> with the client secret <input required="required" type="text" class="form-control input-api client_secret" value="test"></li>
+                                    <li><code>redirect_uri</code> with the same redirect URI the user was redirect back to <input required="required" type="text" class="form-control input-api redirect_uri list-param" value="http://zentate-server.test/me"></li>
+                                    <li><code>code</code> with the authorization code from the query string <input required="required" type="text" class="form-control input-api code" value="" placeholder="code"></li>
+                                </ul>
+                                <div style="overflow: hidden"><button type="button" class="btn btn-outline-warning btn-sm" style="float: right;min-width: 227px;" id="try-auth-code2-grant">Try it!</button></div>
+                                <div style="overflow: hidden">Note that you need to decode the code query string first. You can do that with urldecode($code).</div>
+                                <br><br>
+
+                                The authorization server will respond with a JSON object containing the following properties:
+                                <ul class="list-param">
+                                    <li><code>token_type</code> with the value Bearer</li>
+                                    <li><code>expires_in</code> with an integer representing the TTL of the access token</li>
+                                    <li><code>access_token</code> a JWT signed with the authorization server’s private key</li>
+                                    <li><code>refresh_token</code> an encrypted payload that can be used to refresh the access token when it expires.</li>
+                                </ul>
+
+                                <div class="answer"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function callPasswordGrant(url, data, elem, method){
+            if(typeof method == 'undefined'){
+                $.ajax({
+                    url: url,
+                    method: 'POST',
+                    data: data
+                })
+                .done(function( data ) {
+
+                    $(elem +' .answer').html('<textarea name="" id="myTextarea" style="width: 100%" cols="30" rows="10">'+JSON.stringify(data, undefined, 4)+'</textarea>');
+                });
+            }else{
+                //get redirect url
+                var xhr;
+                var _orgAjax = jQuery.ajaxSettings.xhr;
+                jQuery.ajaxSettings.xhr = function () {
+                    xhr = _orgAjax();
+                    return xhr;
+                };
+                jQuery.ajax('http://zentate-server.test/api/authorize?response_type=code&client_id=c57c89af-7fb3-4338-98de-3028c6fda687&redirect_uri=http://zentate-server.test/me&scope=*', {
+                    success: function(responseText) {
+                        $(elem +' .answer').html('<textarea name="" id="myTextarea" style="width: 100%" cols="30" rows="10">'+xhr.responseURL+'</textarea>');
+                    }
+                });
+            }
+
+
+        }
+
+        $(document).ready(function(){
+            $('#try-password-grant').click(function(){
+                callPasswordGrant('/api/accessToken', {
+                    'grant_type': $('.password-grant .grant_type').val(),
+                    'client_id': $('.password-grant .client_id').val(),
+                    'client_secret': $('.password-grant .client_secret').val(),
+                    'scope': $('.password-grant .scope').val(),
+                    'username': $('.password-grant .username').val(),
+                    'password': $('.password-grant .password').val()
+                }, '.password-grant');
+            });
+            $('#try-client-credentials-grant').click(function(){
+                callPasswordGrant('/api/accessTokenClientCredentials', {
+                    'grant_type': $('.client-credentials-grant .grant_type').val(),
+                    'client_id': $('.client-credentials-grant .client_id').val(),
+                    'client_secret': $('.client-credentials-grant .client_secret').val(),
+                    'scope': $('.client-credentials-grant .scope').val()
+                }, '.client-credentials-grant');
+            });
+            $('#try-auth-code-grant').click(function(){
+                callPasswordGrant('/api/authorize', {
+                    'response_type': $('.authorization-code-grant .response_type').val(),
+                    'client_id': $('.authorization-code-grant .client_id').val(),
+                    'redirect_uri': $('.authorization-code-grant .redirect_uri').val(),
+                    'scope': $('.authorization-code-grant .scope').val()
+                }, '.authorization-code-grant', 'GET');
+            });
+            $('#try-auth-code2-grant').click(function(){
+                callPasswordGrant('/api/accessTokenAuthCode', {
+                    'grant_type': $('.authorization-code-grant2 .grant_type').val(),
+                    'client_id': $('.authorization-code-grant2 .client_id').val(),
+                    'client_secret': $('.authorization-code-grant2 .client_secret').val(),
+                    'redirect_uri': $('.authorization-code-grant2 .redirect_uri').val(),
+                    'code': $('.authorization-code-grant2 .code').val()
+                }, '.authorization-code-grant2');
+            });
+        });
+    </script>
 
 {% endblock %}
